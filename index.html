@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Plate Planner (Local)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Plate Planner</h1>
+    <p class="subtitle">Local bar & plate inventory → all achievable totals + most efficient (fewest plates) balanced loading per side. Data stored in your browser (IndexedDB).</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Inventory</h2>
+      <div class="grid2">
+        <div>
+          <h3>Bars</h3>
+          <div class="row">
+            <input id="barName" placeholder="Name (e.g., 7kg bar)" />
+            <input id="barWeight" placeholder="Weight (kg)" inputmode="decimal" />
+            <button id="addBar">Add</button>
+          </div>
+          <div id="barsList" class="list"></div>
+        </div>
+
+        <div>
+          <h3>Plates</h3>
+          <div class="row">
+            <input id="plateWeight" placeholder="Plate weight (kg)" inputmode="decimal" />
+            <input id="plateCount" placeholder="Count (total plates)" inputmode="numeric" />
+            <button id="addPlate">Add</button>
+          </div>
+          <div class="hint">Balanced loading uses <b>pairs</b>. If you have an odd count, the last plate is ignored for combinations.</div>
+          <div id="platesList" class="list"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="save" class="primary">Save to Browser</button>
+        <button id="load">Reload from Browser</button>
+        <button id="reset" class="danger">Reset All</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Compute</h2>
+      <div class="grid3">
+        <div>
+          <label>Bar</label>
+          <select id="barSelect"></select>
+        </div>
+        <div>
+          <label>Min total (kg)</label>
+          <input id="minTotal" placeholder="e.g., 0" inputmode="decimal" />
+        </div>
+        <div>
+          <label>Max total (kg)</label>
+          <input id="maxTotal" placeholder="e.g., 200" inputmode="decimal" />
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:10px">
+        <input id="targetTotal" placeholder="Optional: target total weight (kg)" inputmode="decimal" />
+        <button id="findTarget">Find Closest</button>
+        <button id="compute" class="primary">Compute All Possible</button>
+        <button id="print">Print</button>
+        <button id="exportCsv">Export CSV</button>
+      </div>
+      <div id="status" class="status"></div>
+
+      <div class="tableWrap  print-only">
+        <table id="results">
+          <thead>
+            <tr>
+              <th>Total (kg)</th>
+              <th>Per side (kg)</th>
+              <th>Plates / side</th>
+              <th>Plates total</th>
+              <th>Per-side breakdown</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <details class="foot">
+        <summary>How “most efficient” is chosen</summary>
+        <p>For each achievable per-side weight, the app chooses the combination with the <b>fewest plates per side</b>. If there is a tie, it chooses the one using the <b>fewest different plate types</b>.</p>
+        <p>All calculations are exact using grams internally (no floating point drift). Balanced means the same plates on both sides.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <small>Made for offline/local use. No network requests. Data stays in your browser.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

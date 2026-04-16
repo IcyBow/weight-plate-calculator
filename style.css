@@ -1,0 +1,78 @@
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;margin:0;background:#0b0f14;color:#e7eef8}
+header{padding:18px 18px 6px;border-bottom:1px solid #1c2430;background:#0b0f14;position:sticky;top:0;z-index:2}
+h1{margin:0 0 6px;font-size:22px}
+.subtitle{margin:0;color:#b9c6d8;font-size:13px;max-width:980px}
+main{padding:18px;display:flex;flex-direction:column;gap:16px;max-width:1100px;margin:0 auto}
+.panel{background:#101826;border:1px solid #1c2430;border-radius:12px;padding:14px}
+.panel h2{margin:0 0 10px;font-size:18px}
+.panel h3{margin:0 0 8px;font-size:15px;color:#d7e3f6}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media (max-width:900px){.grid2,.grid3{grid-template-columns:1fr}}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+input,select,button{border-radius:10px;border:1px solid #2a3546;background:#0c121d;color:#e7eef8;padding:9px 10px;font-size:14px}
+input{min-width:160px}
+select{min-width:240px}
+button{cursor:pointer}
+button:hover{border-color:#3a4b63}
+button.primary{background:#2457ff;border-color:#2457ff}
+button.primary:hover{filter:brightness(1.05)}
+button.danger{background:#b62b2b;border-color:#b62b2b}
+.actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap}
+.list{border:1px dashed #2a3546;border-radius:10px;padding:8px;min-height:44px}
+.item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px;border-bottom:1px solid #1c2430}
+.item:last-child{border-bottom:none}
+.item .meta{color:#b9c6d8;font-size:13px}
+.item button{padding:6px 8px;font-size:12px}
+.hint{color:#b9c6d8;font-size:12px;margin:6px 0 8px}
+.status{margin-top:10px;color:#b9c6d8;font-size:13px;min-height:18px}
+.tableWrap{overflow:auto;border:1px solid #1c2430;border-radius:12px;margin-top:10px}
+table{width:100%;border-collapse:collapse;min-width:860px}
+th,td{padding:10px;border-bottom:1px solid #1c2430;text-align:left;vertical-align:top}
+th{position:sticky;top:0;background:#0f1724;z-index:1}
+tr:hover td{background:#0c1320}
+.foot{margin-top:10px;color:#b9c6d8}
+footer{padding:14px 18px;color:#93a3bb;border-top:1px solid #1c2430;text-align:center}
+
+
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  /* Hide everything visually, keep layout */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Make the compute section visible */
+  .print-only,
+  .print-only * {
+    visibility: visible;
+  }
+
+  /* Place it at the top-left of the page */
+  .print-only {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  /* Clean table for print */
+  table {
+    width: 100%;
+    min-width: 0;
+  }
+
+  th {
+    background: #eee !important;
+    color: #000;
+  }
+
+  tr:hover td {
+    background: transparent !important;
+  }
+}
